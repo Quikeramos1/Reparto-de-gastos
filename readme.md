@@ -19,4 +19,4 @@ porcentaje de aportación 2
 
 ## modo aplicación
 
-los porcentajes de aportación 1 y 2 pueden aplicarse a la suma del total de gastos o cada uno de los gastos de manera individual
+los porcentajes de aportación 1 y 2 pueden aplicarse a la suma del total de gastos o cada uno de los gastos de manera individual. En este caso imprimo todos los conceptos a pagar con los importes que le corresponden a cada uno de los miembros de la pareja.
