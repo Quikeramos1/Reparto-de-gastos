@@ -5,7 +5,7 @@ from tkinter import simpledialog
 class InterfazTkinter:
     def __init__(self, master):
         self.master = master
-        self.master.title("Interfaz Tkinter")
+        self.master.title("Reparto de gastos")
 
         self.label1 = ttk.Label(self.master, text="Nombre de la persona 1:")
         self.label1.grid(row=0, column=0, padx=10, pady=10)
@@ -58,50 +58,44 @@ class InterfazTkinter:
             self.log(f"Error: {e}")
 
     def pedir_datos(self, nombre_1, nombre_2, sueldo_1, sueldo_2, tasa_1, tasa_2):
-        # Cerrar la ventana de gastos anterior si existe
-        if self.ventana_gastos:
-            self.ventana_gastos.destroy()
-
         gastos = {}
-        respuesta = simpledialog.askstring("Input", "¿Quieres introducir los gastos? (S/N):")
+        
 
-        if respuesta and respuesta.lower() == "s":
-            self.ventana_gastos = tk.Toplevel(self.master)
-            self.ventana_gastos.title("Introducir Gastos")
+        
+        self.ventana_gastos = tk.Toplevel(self.master)
+        self.ventana_gastos.title("Introducir Gastos")
 
-            ttk.Label(self.ventana_gastos, text="Concepto del gasto:").grid(row=0, column=0, padx=10, pady=10)
-            ttk.Label(self.ventana_gastos, text="Importe del gasto:").grid(row=1, column=0, padx=10, pady=10)
+        ttk.Label(self.ventana_gastos, text="Concepto del gasto:").grid(row=0, column=0, padx=10, pady=10)
+        ttk.Label(self.ventana_gastos, text="Importe del gasto:").grid(row=1, column=0, padx=10, pady=10)
 
-            entry_concepto = ttk.Entry(self.ventana_gastos)
-            entry_concepto.grid(row=0, column=1, padx=10, pady=10)
+        entry_concepto = ttk.Entry(self.ventana_gastos)
+        entry_concepto.grid(row=0, column=1, padx=10, pady=10)
 
-            entry_importe = ttk.Entry(self.ventana_gastos)
-            entry_importe.grid(row=1, column=1, padx=10, pady=10)
+        entry_importe = ttk.Entry(self.ventana_gastos)
+        entry_importe.grid(row=1, column=1, padx=10, pady=10)
 
-            mensaje_label = ttk.Label(self.ventana_gastos, text="")
-            mensaje_label.grid(row=2, column=0, columnspan=2, pady=10)
+        mensaje_label = ttk.Label(self.ventana_gastos, text="")
+        mensaje_label.grid(row=2, column=0, columnspan=2, pady=10)
 
-            def agregar_gasto():
-                try:
-                    concepto = entry_concepto.get()
-                    importe = float(entry_importe.get())
-                    gastos[concepto] = importe
-                    mensaje_label.config(text=f"Gasto añadido: {concepto} - {importe}")
-                    self.log(f"Gasto añadido: {concepto} - {importe}")
+        def agregar_gasto():
+            try:
+                concepto = entry_concepto.get()
+                importe = float(entry_importe.get())
+                gastos[concepto] = importe
+                mensaje_label.config(text=f"Gasto añadido: {concepto} - {importe}")
+                self.log(f"Gasto añadido: {concepto} - {importe}")
 
-                except ValueError:
-                    mensaje_label.config(text="Error: El importe debe ser un número")
-                    self.log("Error: El importe debe ser un número")
+            except ValueError:
+                mensaje_label.config(text="Error: El importe debe ser un número")
+                self.log("Error: El importe debe ser un número")
 
-            def ejecutar_cantidad_pagar():
-                self.ventana_gastos.destroy()  # Cierra la ventana de gastos
-                self.cantidad_pagar(gastos, nombre_1, nombre_2, tasa_1, tasa_2)
+        def ejecutar_cantidad_pagar():
+            self.ventana_gastos.destroy()  # Cierra la ventana de gastos
+            self.cantidad_pagar(gastos, nombre_1, nombre_2, tasa_1, tasa_2)
 
-            ttk.Button(self.ventana_gastos, text="Agregar Gasto", command=agregar_gasto).grid(row=3, column=0, columnspan=2, pady=10)
-            ttk.Button(self.ventana_gastos, text="Calcular Pagos", command=ejecutar_cantidad_pagar).grid(row=4, column=0, columnspan=2, pady=10)
-        elif respuesta and respuesta.lower() != "s":
-            self.log("Saliendo del programa")
-            exit()
+        ttk.Button(self.ventana_gastos, text="Agregar Gasto", command=agregar_gasto).grid(row=3, column=0, columnspan=2, pady=10)
+        ttk.Button(self.ventana_gastos, text="Calcular Pagos", command=ejecutar_cantidad_pagar).grid(row=4, column=0, columnspan=2, pady=10)
+    
         return gastos
 
     def calcular_aportacion(self, sueldo_1, sueldo_2):
@@ -127,7 +121,7 @@ class InterfazTkinter:
         ttk.Label(ventana_resultados, text=resultados_text).pack()
 
         # Botón de salir
-        ttk.Button(ventana_resultados, text="Salir", command=self.ventana_resultados_gastos.destroy).pack()
+        ttk.Button(ventana_resultados, text="Salir", command=self.master.destroy).pack()
 
 def main():
     root = tk.Tk()
