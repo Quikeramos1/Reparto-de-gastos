@@ -1,8 +1,39 @@
 def pedir_datos():
-    nombre_1 = input("Introduce el nombre de la persona 1: ")
-    nombre_2 = input("Introduce el nombre de la persona 2: ")
-    sueldo_1 = input(f"Introduce sueldo de {nombre_1}: ")
-    sueldo_2 = input(f"Introduce sueldo de {nombre_2}: ")
+    nombre_1 = ""
+    while nombre_1 == "":
+        nombre_1 = input("Introduce el nombre de la persona 1: ")
+        try:
+            no_vacio(nombre_1)
+        except ValueError as e:
+            print(f"Error: {e}")
+
+    nombre_2 = ""
+    while nombre_2 == "":
+        nombre_2 = input("Introduce el nombre de la persona 2: ")
+        try:
+            no_vacio(nombre_2)
+        except ValueError as e:
+            print(f"Error: {e}")
+
+    sueldo_1 = ""
+    while sueldo_1 == "":
+        sueldo_1 = input(f"Introduce sueldo de {nombre_1}: ")
+        
+        try:
+            no_vacio(sueldo_1)
+        except ValueError as e:
+            print(f"Error: {e}")
+
+    sueldo_2 = ""
+    while sueldo_2 == "":
+        sueldo_2 = input(f"Introduce sueldo de {nombre_2}: ")
+        
+        try:
+            no_vacio(sueldo_2)
+        except ValueError as e:
+            print(f"Error: {e}")
+    float(sueldo_1)
+    float(sueldo_2)
     tasa_1, tasa_2 = calcular_aportacion(sueldo_1, sueldo_2)
     gastos = {}
     introducir = input("¿Quires introducir los gastos? (S/N): ").lower()
@@ -21,7 +52,12 @@ def pedir_datos():
     elif introducir != "s":
         print("Saliendo del programa")
         exit()   
-       
+
+def no_vacio(dato):
+    if dato == "":
+        print("El campo no puede estar vacío")
+        raise ValueError("Campo vacío: " + dato)
+           
             
 def calcular_aportacion(sueldo_1, sueldo_2):
     sueldo_1=float(sueldo_1)
