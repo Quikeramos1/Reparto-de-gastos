@@ -68,9 +68,17 @@ def calcular_aportacion(sueldo_1, sueldo_2):
     return tasa_1,tasa_2
 
 def cantidad_pagar(gastos,nombre_1,nombre_2,tasa_1, tasa_2):
-    
+    total1=[]
+    total2=[]
+
     for clave, valor in gastos.items():
         tasa_valor_1 = (int(valor)* int(tasa_1))/100
         tasa_valor_2 = (int(valor)* int(tasa_2))/100
+        total1.append(float(tasa_valor_1))
+        total2.append(float(tasa_valor_2))
         print(f"{nombre_1}, tiene que pagar de {clave}: {tasa_valor_1}")
         print(f"{nombre_2}, tiene que pagar de {clave}: {tasa_valor_2}")
+
+    print(f"\nEl total acumulado de {nombre_1} es de {sum(total1)}")
+    print(f"El total acumulado de {nombre_2} es de {sum(total2)}\n")
+        
