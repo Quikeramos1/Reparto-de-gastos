@@ -1,3 +1,6 @@
+Creado por ®Enrique Ramos Fuster para su libre uso y distribución
+Málaga 18/01/2024
+
 # -Calcular aportación económica para gastos hogar en pareja.
 
 
@@ -12,7 +15,7 @@ Aplicación pensada para dividir los gastos comunes del hogar en función de los
 
 3- dividimos sueldo persona 2 entre total de ingresos = tasa aportación 2
 
-4- multiplicamos tasa aportación 1 por 100 = portenceje de aportación 1
+4- multiplicamos tasa aportación 1 por 100 = porcentaje de aportación 1
 
 5- multiplicamos tasa de aportación 2 por 100 =
 porcentaje de aportación 2
@@ -20,7 +23,7 @@ porcentaje de aportación 2
 ## Modo aplicación de la lógica al resultado
 
 los porcentajes de aportación 1 y 2 pueden aplicarse a la suma del total de gastos o cada uno de los gastos de manera individual. En este caso imprimo todos los conceptos a pagar con los importes que le corresponden a cada uno de los miembros de la pareja.
-He añadido una impresión final por ventana que indicá el importe total a aportar por cada persona
+He añadido una impresión final por ventana que indica el importe total a aportar por cada persona
 
 ## Uso a través del terminal.
 
@@ -33,4 +36,8 @@ He tenido en cuenta los errores por campos vacíos, imprimiedo motivo y volviend
 # -Intentando crear un interface gráfica con tKinter
 
 Creo archivo tk.py con toda la lógica y diseño de tkinter dentro de una clase.
-actualmente funcional 100% pero en proceso de capturar todos los posibles errores  
+actualmente funcional 100% 
+
+# Creado ejecutable en el directorio Reparto de gastos.
+
+Para su uso simplemente descargar el directorio completo de /Reparto de gasto. y ejecutar el archivo reparto de gastos (Icono de moneda)
