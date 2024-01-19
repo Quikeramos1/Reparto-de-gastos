@@ -40,4 +40,4 @@ actualmente funcional 100%
 
 # Creado ejecutable en el directorio Reparto de gastos.
 
-Para su uso simplemente descargar el directorio completo de /Reparto de gasto. y ejecutar el archivo reparto de gastos (Icono de moneda)
+Para su uso simplemente descargar el directorio completo de /Reparto de gasto. y ejecutar el archivo reparto de gastos (Icono de moneda) que es un acceso directo al arachivo /dist/tk
