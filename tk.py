@@ -161,12 +161,20 @@ def mostrar_ventana_splash():
     splash_root = Tk()
     splash_root.geometry("400x400")
     splash_root.overrideredirect(True)
-    width = int(splash_root.winfo_screenwidth() // 3)
-    height = int(splash_root.winfo_screenheight() // 3)
+
+    image_path = "/Users/quike/Desktop/calcular_aporte_economico/media/splash.png"
+    image = PhotoImage(file=image_path)
+    img_label = Label(splash_root, image=image)
+    img_label.image = image  # Esto evita que la imagen sea eliminada por el recolector de basura
+    img_label.pack()
+    nombre_label = Label(splash_root, text= "Enrique Ramos Fuster®\n2024\nAplicación diseñada para\nsu libre uso y distribución.")
+    nombre_label.place(x=400, y=0)
+    width = int(splash_root.winfo_screenwidth() // 2)
+    height = int(splash_root.winfo_screenheight() // 1.2)
     pwidth = round(splash_root.winfo_screenwidth() // 2 - width // 2)
     pheight = round(splash_root.winfo_screenheight() // 2 - height // 2)
     splash_root.geometry("{}x{}+{}+{}".format(width, height, pwidth, pheight))
-    splash_root.after(3000, mostrar_ventana_principal, splash_root)
+    splash_root.after(5000, mostrar_ventana_principal, splash_root)
 
     splash_root.mainloop()
 
@@ -179,7 +187,7 @@ def mostrar_ventana_principal(splash_root):
     pwidth = round(root.winfo_screenwidth() // 2 - width // 2)
     pheight = round(root.winfo_screenheight() // 2 - height // 2)
     root.geometry("{}x{}+{}+{}".format(width, height, pwidth, pheight))
-    root.iconbitmap("/Users/quike/Desktop/calcular_aporte_economico/Reparto de gastos/dist/icon.ico")
+    root.iconbitmap("/Users/quike/Desktop/calcular_aporte_economico/media/icono48.png")
     app = InterfazTkinter(root)
     app.splash_root = splash_root 
     root.protocol("WM_DELETE_WINDOW", lambda: on_closing(root, splash_root))
