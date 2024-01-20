@@ -7,37 +7,38 @@ class InterfazTkinter:
     def __init__(self, master):
         self.master = master
         self.master.title("Reparto de gastos")
-
+        
         self.label1 = ttk.Label(self.master, text="Nombre de la persona 1:")
-        self.label1.grid(row=0, column=0, padx=10, pady=10)
+        self.label1.pack(padx=10, pady=10)
 
         self.entry_nombre1 = ttk.Entry(self.master)
-        self.entry_nombre1.grid(row=0, column=1, padx=10, pady=10)
+        self.entry_nombre1.pack(padx=10, pady=10)
         
         self.label_sueldo1 = ttk.Label(self.master, text="Sueldo de la persona 1:")
-        self.label_sueldo1.grid(row=1, column=0, padx=10, pady=10)
+        self.label_sueldo1.pack(padx=10, pady=10)
 
         self.entry_sueldo1 = ttk.Entry(self.master)
-        self.entry_sueldo1.grid(row=1, column=1, padx=10, pady=10)
+        self.entry_sueldo1.pack(padx=10, pady=10)
 
         self.label2 = ttk.Label(self.master, text="Nombre de la persona 2:")
-        self.label2.grid(row=2, column=0, padx=10, pady=10)
+        self.label2.pack(padx=10, pady=10)
 
         self.entry_nombre2 = ttk.Entry(self.master)
-        self.entry_nombre2.grid(row=2, column=1, padx=10, pady=10)
+        self.entry_nombre2.pack(padx=10, pady=10)
 
         self.label_sueldo2 = ttk.Label(self.master, text="Sueldo de la persona 2:")
-        self.label_sueldo2.grid(row=3, column=0, padx=10, pady=10)
+        self.label_sueldo2.pack(padx=10, pady=10)
 
         self.entry_sueldo2 = ttk.Entry(self.master)
-        self.entry_sueldo2.grid(row=3, column=1, padx=10, pady=10)
+        self.entry_sueldo2.pack(padx=10, pady=10)
 
         self.calcular_button = ttk.Button(self.master, text="Calcular", command=self.calcular_resultado, width=20)
-        self.calcular_button.grid(row=4, column=0, columnspan=2, pady=10)
+        self.calcular_button.pack(pady=10)
 
         self.textbox = tk.Text(self.master, height=10, width=60)
-        self.textbox.grid(row=5, column=0, columnspan=2, pady=10)
+        self.textbox.pack(pady=10)
 
+        
         self.ventana_gastos = None  # Variable para almacenar la referencia a la ventana de gastos
         self.splash_root = None  # Variable para almacenar la referencia a la ventana splash
 
@@ -69,8 +70,8 @@ class InterfazTkinter:
 
         ttk.Label(self.ventana_gastos, text="Concepto del gasto:").grid(row=0, column=0, padx=10, pady=10)
         ttk.Label(self.ventana_gastos, text="Importe del gasto:").grid(row=1, column=0, padx=10, pady=10)
-        width = int(self.master.winfo_screenwidth() // 4.5)
-        height = int(self.master.winfo_screenheight() // 3)
+        width = int(self.master.winfo_screenwidth()/4)
+        height = int(self.master.winfo_screenheight()/3)
         pwidth = round(self.master.winfo_screenwidth() // 2 - width // 2)
         pheight = round(self.master.winfo_screenheight() // 2 - height // 2)
         self.ventana_gastos.geometry("{}x{}+{}+{}".format(width, height, pwidth, pheight))
@@ -106,8 +107,8 @@ class InterfazTkinter:
             
             ttk.Label(ventana_resultados, text=resultados_text).pack()
              # Centrar la ventana en la pantalla
-            width = int(ventana_resultados.winfo_screenwidth() // 4.5)
-            height = int(ventana_resultados.winfo_screenheight() // 2.5)
+            width = int(ventana_resultados.winfo_screenwidth()/4)
+            height = int(ventana_resultados.winfo_screenheight()/3)
             pwidth = round(ventana_resultados.winfo_screenwidth() // 2 - width // 2)
             pheight = round(ventana_resultados.winfo_screenheight() // 2 - height // 2)
             ventana_resultados.geometry("{}x{}+{}+{}".format(width, height, pwidth, pheight))
@@ -149,6 +150,8 @@ class InterfazTkinter:
             resultados_text += f"{nombre_1}, tiene que pagar de {clave}: {tasa_valor_1}\n"
             resultados_text += f"{nombre_2}, tiene que pagar de {clave}: {tasa_valor_2}\n"
             resultados_text += "\n"  # Agrega un espacio entre cada línea
+        
+
             
         resultados_text += f"El total acumulado de {nombre_1} es de {sum(total1)}\n"
         resultados_text += f"El total acumulado de {nombre_2} es de {sum(total2)}\n"
@@ -159,38 +162,53 @@ class InterfazTkinter:
 
 def mostrar_ventana_splash():
     splash_root = Tk()
-    splash_root.geometry("400x400")
     splash_root.overrideredirect(True)
 
     image_path = "/Users/quike/Desktop/calcular_aporte_economico/media/splash.png"
     image = PhotoImage(file=image_path)
     img_label = Label(splash_root, image=image)
-    img_label.image = image  # Esto evita que la imagen sea eliminada por el recolector de basura
     img_label.pack()
-    nombre_label = Label(splash_root, text= "Enrique Ramos Fuster®\n2024\nAplicación diseñada para\nsu libre uso y distribución.")
-    nombre_label.place(x=400, y=0)
-    width = int(splash_root.winfo_screenwidth() // 2)
-    height = int(splash_root.winfo_screenheight() // 1.2)
+
+    nombre_text = "®Enrique Ramos Fuster\n2024\nAplicación diseñada para\nsu libre uso y distribución."
+    nombre_label = Label(splash_root, text=nombre_text)
+    nombre_label.pack()
+
+    width = int(splash_root.winfo_screenwidth()//2)
+    height = int(splash_root.winfo_screenheight()//1)
     pwidth = round(splash_root.winfo_screenwidth() // 2 - width // 2)
     pheight = round(splash_root.winfo_screenheight() // 2 - height // 2)
     splash_root.geometry("{}x{}+{}+{}".format(width, height, pwidth, pheight))
-    splash_root.after(5000, mostrar_ventana_principal, splash_root)
 
+    nombre_label_x = (width - nombre_label.winfo_reqwidth()) // 2
+    nombre_label_y = (height - nombre_label.winfo_reqheight()) //2  # Puedes ajustar este valor según sea necesario
+
+    nombre_label.place(x=nombre_label_x, y=nombre_label_y)
+
+    splash_root.after(5000, mostrar_ventana_principal, splash_root)
     splash_root.mainloop()
 
 
 def mostrar_ventana_principal(splash_root):
     splash_root.withdraw()
     root = Tk()
-    width = int(root.winfo_screenwidth() // 4.5)
-    height = int(root.winfo_screenheight() // 2.5)
+    root.title("Reparto de gastos")
+    
+
+
+    width = int(root.winfo_screenwidth()//2)
+    height = int(root.winfo_screenheight()//1)
     pwidth = round(root.winfo_screenwidth() // 2 - width // 2)
     pheight = round(root.winfo_screenheight() // 2 - height // 2)
     root.geometry("{}x{}+{}+{}".format(width, height, pwidth, pheight))
     root.iconbitmap("/Users/quike/Desktop/calcular_aporte_economico/media/icono48.png")
+    
     app = InterfazTkinter(root)
     app.splash_root = splash_root 
+    
+    
     root.protocol("WM_DELETE_WINDOW", lambda: on_closing(root, splash_root))
+
+    
     
     root.mainloop()
 
@@ -202,4 +220,5 @@ def on_closing(root, splash_root):
 
 
 if __name__ == "__main__":
+    
     mostrar_ventana_splash()
